@@ -9,4 +9,11 @@ return {
   --     require("lsp_signature").setup()
   --   end,
   -- },
+
+  {
+    "ViViDboarder/wombat.nvim",
+    lazy = false,
+    priority = 1000,
+    dependencies = { "rktjmp/lush.nvim" },
+  }
 }

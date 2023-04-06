@@ -20,9 +20,11 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    [";"] = { ":", desc = "Shift is hard" },
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
+    ["<esc>"] = { "<C-\\><C-n>", desc = "Easy escape from terminal"},
   },
 }
