@@ -34,6 +34,9 @@ return {
       desc = "Next buffer"
     },
   },
+  v = {
+    [";"] = { ":", desc = "Shift is hard" },
+  },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
