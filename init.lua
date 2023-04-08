@@ -19,6 +19,7 @@ return {
 
   -- Set colorscheme to use
   colorscheme = "astrodark",
+  -- colorscheme = "astrolight",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -51,6 +52,17 @@ return {
     servers = {
       -- "pyright"
     },
+
+    config = {
+      clangd = {
+        cmd = {
+          "clangd",
+          "--clang-tidy",
+          "--enable-config",
+          "--log=verbose",
+        }
+      }
+    },
   },
 
   -- Configure require("lazy").setup() options
@@ -80,5 +92,15 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = {"lua", "json"},
+      callback = function()
+        vim.opt_local.tabstop = 2
+        vim.opt_local.shiftwidth = 2
+      end,
+    })
+
+    vim.on_key(function() end, vim.api.nvim_get_namespaces()["auto_hlsearch"])
   end,
 }

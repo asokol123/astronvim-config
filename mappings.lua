@@ -33,6 +33,10 @@ return {
       function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
       desc = "Next buffer"
     },
+    ["<leader>h"] = {
+      vim.cmd.noh,
+      desc = "Turn off highlight"
+    },
   },
   v = {
     [";"] = { ":", desc = "Shift is hard" },
