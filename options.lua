@@ -12,6 +12,9 @@ return {
 
     tabstop = 4, -- Tabs should be 4 spaces by default
     shiftwidth = 4, -- Also 4 spaces
+
+    list = true, -- Show trailing spaces
+    listchars = "tab:>-,trail:.",
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

@@ -18,6 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
+  -- colorscheme = "wombat_lush",
   colorscheme = "astrodark",
   -- colorscheme = "astrolight",
 

@@ -15,5 +15,11 @@ return {
     lazy = false,
     priority = 1000,
     dependencies = { "rktjmp/lush.nvim" },
-  }
+  },
+  {
+    "AstroNvim/astrotheme",
+    lazy = false,
+    priority = 1000,
+    opts = { plugins = { ["dashboard-nvim"] = true } }
+  },
 }
