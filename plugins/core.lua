@@ -16,6 +16,28 @@ return {
   -- You can disable default plugins as follows:
   { "max397574/better-escape.nvim", enabled = false },
 
+  -- Cmp priorities
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function (_, opts)
+      local cmp = require('cmp')
+      opts.sorting = {
+        priority_weight = 100000,
+
+        comparators = {
+          cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+          cmp.config.compare.exact, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+          function(entry1, entry2)
+            return cmp.config.compare.kind(entry2, entry1);
+          end,
+          cmp.config.compare.offset,
+          cmp.config.compare.length,
+          cmp.config.compare.order
+        }
+      }
+    end
+  }
+
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   -- {
   --   "L3MON4D3/LuaSnip",
