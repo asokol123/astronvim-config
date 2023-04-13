@@ -20,6 +20,15 @@ return {
     "AstroNvim/astrotheme",
     lazy = false,
     priority = 1000,
-    opts = { plugins = { ["dashboard-nvim"] = true } }
+    opts = { plugins = { ["dashboard-nvim"] = true } },
+  },
+  {
+    "folke/noice.nvim",
+    opts = {
+      presets = {
+        bottom_search = true, -- use a classic bottom cmdline for search
+        command_palette = true, -- position the cmdline and popupmenu together
+      },
+    },
   },
 }

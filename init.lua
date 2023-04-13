@@ -103,6 +103,14 @@ return {
       end,
     })
 
+    vim.api.nvim_create_autocmd("UiEnter", {
+      callback = function()
+        if vim.fn.argc() == 0 then
+          vim.cmd "Neotree show"
+        end
+      end,
+    })
+
     vim.on_key(function() end, vim.api.nvim_get_namespaces()["auto_hlsearch"])
   end,
 }
