@@ -12,7 +12,7 @@ return {
 
   -- { import = "astrocommunity.pack.java" }, -- jdtls works meh, and installs clang-format which is buggy as hell
   { import = "astrocommunity.pack.go" },
-  { import = "astrocommunity.pack.python" },
+  -- { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.yaml" },
 

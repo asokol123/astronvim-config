@@ -78,7 +78,7 @@ return {
       },
       rustfmt = {
         extraArgs = {
-          "+nightly",
+          -- "+nightly",
         },
         rangeFormatting = {
           enable = true,
