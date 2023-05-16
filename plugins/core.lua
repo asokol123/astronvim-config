@@ -4,12 +4,34 @@ return {
     "goolord/alpha-nvim",
     opts = function(_, opts)
       -- completely change alpha options
-      opts = require('alpha.themes.startify')
-
-      -- astronvim writes some text to footer, so we must create it
-      opts.section.footer.opts = {}
+      -- opts = require('alpha.themes.startify')
+      -- opts.section.footer.opts = {}
 
       return opts
+    end,
+  },
+
+  {
+    "AckslD/nvim-neoclip.lua",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function(_, opts)
+      require('neoclip').setup(opts)
+      require('telescope').load_extension('neoclip')
+    end,
+  },
+
+  -- Color helper
+  { "NvChad/nvim-colorizer.lua", enabled = false },
+  {
+    "uga-rosa/ccc.nvim",
+    event = "User AstroFile",
+    keys = { { "<leader>uC", "<cmd>CccPick<cr>", desc = "Toggle colorizer" } },
+    opts = { highlighter = { auto_enable = true } },
+    config = function(_, opts)
+      require("ccc").setup(opts)
+      require("ccc.highlighter").new(true):enable(0, true)
     end,
   },
 
