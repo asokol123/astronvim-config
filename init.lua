@@ -53,17 +53,30 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
+      "clangd",
     },
-
+    setup_handlers = {
+      clangd = function(_, opts)
+        require("clangd_extensions").setup {
+          server = opts,
+          filetypes = {  },
+          cmd = {
+            "/home/aksokolovskiy/.local/share/nvim/mason/bin/clangd",
+            "--background-index",
+            "-j=8",
+            "--clang-tidy",
+            "--header-insertion=never",
+          }
+        }
+      end
+    },
     config = {
       clangd = {
-        cmd = {
-          "clangd",
-          "--clang-tidy",
-          "--enable-config",
-          "--log=verbose",
-        }
-      }
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+        capabilities = {
+          offsetEncoding = "utf-8",
+        },
+      },
     },
   },
 

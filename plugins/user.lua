@@ -36,4 +36,5 @@ return {
     opts = {},
     keys = { { "<leader>lv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
   },
+  { "p00f/clangd_extensions.nvim" },
 }
