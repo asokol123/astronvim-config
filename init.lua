@@ -53,7 +53,8 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
-      "clangd",
+      -- "clangd",
+      "pylsp"
     },
     setup_handlers = {
       clangd = function(_, opts)
@@ -63,7 +64,7 @@ return {
           cmd = {
             "/home/aksokolovskiy/.local/share/nvim/mason/bin/clangd",
             "--background-index",
-            "-j=8",
+            "-j=31",
             "--clang-tidy",
             "--header-insertion=never",
           }
