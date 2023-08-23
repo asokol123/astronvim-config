@@ -19,8 +19,10 @@ return {
 
   -- Set colorscheme to use
   -- colorscheme = "wombat_lush",
-  colorscheme = "astrodark",
+  -- colorscheme = "habamax",
+  -- colorscheme = "astrodark",
   -- colorscheme = "astrolight",
+  colorscheme = "astromars",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -53,22 +55,14 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
-      "clangd",
+      -- "clangd",
     },
     setup_handlers = {
       clangd = function(_, opts)
-        require("clangd_extensions").setup {
-          server = opts,
-          filetypes = {  },
-          cmd = {
-            "/home/aksokolovskiy/.local/share/nvim/mason/bin/clangd",
-            "--background-index",
-            "-j=8",
-            "--clang-tidy",
-            "--header-insertion=never",
-          }
-        }
-      end
+        require("lspconfig").clangd.setup(opts)
+        require("clangd_extensions.inlay_hints").setup_autocmd()
+        require("clangd_extensions.inlay_hints").set_inlay_hints()
+      end,
     },
     config = {
       clangd = {
@@ -76,7 +70,29 @@ return {
         capabilities = {
           offsetEncoding = "utf-8",
         },
+        cmd = {
+          vim.fn.expand("~/.local/share/nvim/mason/bin/clangd"),
+          "--background-index",
+          "-j=8",
+          "--clang-tidy",
+          "--header-insertion=never",
+        }
       },
+      gopls = {
+        settings = {
+          gopls = {
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            }
+          }
+        }
+      }
     },
   },
 

@@ -37,4 +37,17 @@ return {
     keys = { { "<leader>lv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
   },
   { "p00f/clangd_extensions.nvim" },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      window = {
+        mappings = {
+          ["/"] = "none",
+          ["?"] = "none",
+          ["g?"] = "show_help",
+          ["g/"] = "fuzzy_finder",
+        }
+      }
+    }
+  },
 }
