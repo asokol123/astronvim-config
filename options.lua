@@ -26,6 +26,7 @@ return {
     icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
     ui_notifications_enabled = true, -- disable notifications when toggling UI elements
     max_file = { size = 1024 * 1024 * 10, lines = 20000 }, -- set global limits for large files
+    resession_enabled = false, -- enable experimental resession.nvim session management (will be default in AstroNvim v4)
   },
 }
 -- If you need more control, you can use the function()...end notation
