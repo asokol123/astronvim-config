@@ -55,7 +55,7 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
-      -- "clangd",
+      "clangd",
     },
     setup_handlers = {
       clangd = function(_, opts)
@@ -65,19 +65,20 @@ return {
       end,
     },
     config = {
-      clangd = {
-        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-        capabilities = {
-          offsetEncoding = "utf-8",
-        },
-        cmd = {
-          vim.fn.expand("~/.local/share/nvim/mason/bin/clangd"),
-          "--background-index",
-          "-j=8",
-          "--clang-tidy",
-          "--header-insertion=never",
-        }
-      },
+      -- clangd = {
+        -- filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+        -- capabilities = {
+        --   offsetEncoding = "utf-8",
+        -- },
+        -- cmd = {
+        --   "clangd",
+        --   "--background-index",
+        --   "-j=8",
+        --   "--clang-tidy",
+        --   "--header-insertion=never",
+        --   "--enable-config",
+        -- }
+      -- },
       gopls = {
         settings = {
           gopls = {
@@ -123,14 +124,6 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
-
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = {"lua", "json"},
-      callback = function()
-        vim.opt_local.tabstop = 2
-        vim.opt_local.shiftwidth = 2
-      end,
-    })
 
     vim.on_key(function() end, vim.api.nvim_get_namespaces()["auto_hlsearch"])
   end,
