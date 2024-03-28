@@ -2,7 +2,7 @@ return {
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
-    channel = "nightly", -- "stable" or "nightly"
+    channel = "stable", -- "stable" or "nightly"
     version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
     branch = "nightly", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
@@ -19,9 +19,10 @@ return {
 
   -- Set colorscheme to use
   -- colorscheme = "wombat_lush",
+  -- colorscheme = "habamax",
   -- colorscheme = "astrodark",
-  colorscheme = "astromars",
   -- colorscheme = "astrolight",
+  colorscheme = "astromars",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -110,14 +111,6 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
-
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = {"lua"},
-      callback = function()
-        vim.opt_local.tabstop = 2
-        vim.opt_local.shiftwidth = 2
-      end,
-    })
 
     vim.on_key(function() end, vim.api.nvim_get_namespaces()["auto_hlsearch"])
   end,
