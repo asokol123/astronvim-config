@@ -19,7 +19,8 @@ return {
 
   -- Set colorscheme to use
   -- colorscheme = "wombat_lush",
-  colorscheme = "astrodark",
+  -- colorscheme = "astrodark",
+  colorscheme = "astromars",
   -- colorscheme = "astrolight",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
@@ -53,22 +54,15 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
-      -- "clangd",
-      "pylsp"
+      "clangd",
+      -- "pylsp"
     },
     setup_handlers = {
+      -- add custom handler
       clangd = function(_, opts)
-        require("clangd_extensions").setup {
-          server = opts,
-          filetypes = {  },
-          cmd = {
-            "/home/aksokolovskiy/.local/share/nvim/mason/bin/clangd",
-            "--background-index",
-            "-j=31",
-            "--clang-tidy",
-            "--header-insertion=never",
-          }
-        }
+        require('lspconfig')['clangd'].setup(opts)
+        require("clangd_extensions.inlay_hints").setup_autocmd()
+        require("clangd_extensions.inlay_hints").set_inlay_hints()
       end
     },
     config = {
@@ -77,6 +71,14 @@ return {
         capabilities = {
           offsetEncoding = "utf-8",
         },
+        cmd = {
+          "clangd",
+          "--compile-commands-dir=/home/aksokolovskiy/P/vscode/",
+          "--background-index",
+          "-j=31",
+          "--clang-tidy",
+          "--header-insertion=never",
+        }
       },
     },
   },
@@ -110,7 +112,7 @@ return {
     -- }
 
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = {"lua", "json"},
+      pattern = {"lua"},
       callback = function()
         vim.opt_local.tabstop = 2
         vim.opt_local.shiftwidth = 2

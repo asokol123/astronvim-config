@@ -31,7 +31,7 @@ return {
     opts = { highlighter = { auto_enable = true } },
     config = function(_, opts)
       require("ccc").setup(opts)
-      require("ccc.highlighter").new(true):enable(0, true)
+      -- require("ccc.highlighter").new(true):enable(0, true)
     end,
   },
 
@@ -43,18 +43,35 @@ return {
     "hrsh7th/nvim-cmp",
     opts = function (_, opts)
       local cmp = require('cmp')
+      opts.formatting = {
+        fields = { "kind", "menu", "abbr" },
+        format = require('lspkind').cmp_format {
+          mode = 'symbol_text',
+          menu = {
+            buffer = '[Buffer]',
+            nvim_lsp = '[LSP]',
+            luasnip = '[LuaSnip]',
+            nvim_lua = '[Lua]',
+            latex_symbols = '[Latex]',
+          },
+          maxwidth = 50,
+          ellipsis_chat = '...',
+        },
+      }
       opts.sorting = {
-        priority_weight = 100000,
+        priority_weight = 100,
 
         comparators = {
-          cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
-          cmp.config.compare.exact, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
-          function(entry1, entry2)
-            return cmp.config.compare.kind(entry2, entry1);
-          end,
+          require("clangd_extensions.cmp_scores"),
+          cmp.config.compare.score,
+          cmp.config.compare.exact,
+          cmp.config.compare.locality,
           cmp.config.compare.offset,
-          cmp.config.compare.length,
-          cmp.config.compare.order
+          -- function(entry1, entry2)
+          --   return cmp.config.compare.kind(entry2, entry1);
+          -- end,
+          -- cmp.config.compare.length,
+          -- cmp.config.compare.order
         }
       }
     end
